@@ -27,10 +27,10 @@ SECRET_KEY = 'django-insecure-ohxhze*x@a0k%xarp3_d$hh-@y6a^ri=90#c*$6wal-hqcx5sk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1 localhost despliegue-django-1.onrender.com").split(' ')
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1 localhost despliegue-django-1.onrender.com 0.0.0.0").split(' ')
 
 # Security settings
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False  # Cambiado a False para permitir el despliegue inicial
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
@@ -38,6 +38,11 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_HSTS_SECONDS = 31536000  # 1 year
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
+
+# Configuración específica para Render
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
 
 
 # Application definition
